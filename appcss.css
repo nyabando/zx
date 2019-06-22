@@ -1,220 +1,73 @@
-@import url("https://fonts.googleapis.com/css?family=Raleway:400,800&display=swap");
-
-:root {
-  --red: #db0c41;
-  --blue: #11176d;
-  --grey: #efeff1;
-  --duration: 0.7s;
-  --ease: cubic-bezier(0.6, 0, 0.4, 1);
-  --nav-height: 25vh;
-  --item-height: 2.5rem;
-}
-
-*,
-*::before,
-*::after {
-  position: relative;
-  box-sizing: border-box;
-}
+$my-blue: #29BFEE;
+$my-yellow: #FFE807;
+$my-red: #F12634;
+$my-purple: #5B108B;
 
 html {
-  font-size: 16px;
-  height: 100%;
-  background: var(--blue);
-  font-family: Raleway, sans-serif;
+  display: grid;
+  min-height: 100%;
+  overflow: hidden;
 }
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-// --------------------------
 
 body {
-  min-height: 100%;
   display: grid;
+  background-color: #000;
+  font-family: Helvetica;
+  font-weight: 600;
+  color: #FFFFFF;
 }
 
-#app {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  background-color: var(--grey);
-  width: 90%;
-  min-height: 70vh;
+.icon {
   margin: auto;
 }
 
-/* ---------------------------------- */
-
-
-.logo {
-  grid-column: 1;
-  grid-row: 1;
-  font-size: 1.2rem;
-  align-self: center;
-  justify-self: start;
-  z-index: 10;
-  padding: 0.25em 1em;
+.box {
+  width: 500px;
+  height: 250px;
+  border-color: #FFFFFF;
+  border-style: solid;
+  border-width: 10px;
 }
 
-
-.content {
-  display: grid;
-  align-content: center;
-  padding: 0% 10% 0 15%;
-  overflow: hidden;
+.title {
+  font-size: 80px;
+  padding-left: 30px;
+  padding-top: 10px;
 }
 
-.nav-title {
-  margin: 0;
-  font-size: 2.3rem;
-  font-weight: 800;
+.address {
+  font-size: 25px;
+  padding-left: 30px;
 }
 
-.active-nav {
-  background-color: var(--red);
-  box-shadow: 0 2rem 3rem rgba(0,0,0,.3);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  grid-column: 1;
-  grid-row: 1;
-  padding: 1rem;
-  height: var(--nav-height);
-  width: 100%;
-  margin: auto;
-  padding-left: 10vmin;
-  white-space: nowrap;
-  max-width: 30em;
-
-  > img {
-    display: block;
-    max-width: 55%;
-    height: auto;
-    width: auto;
-    position: absolute;
-    right: 70%;
-    top: -60%;
-    bottom: -30%;
-    margin: auto;
-    grid-column: 1;
-    grid-row: 1 / -1;
-    pointer-events: none;
-  }
-  
+.effects {
+  padding-top: 10px;
+  padding-left: 30px;
 }
 
-.nav-title {
-  width: 60%;
-  height: 2.3em;
+.circle {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 40px;
+  line-height: 50px;
 }
 
-/* ---------------------------------- */
-
-.secondary-nav {
-  grid-column: 1;
-  grid-row: 1;
-  margin: auto;
-  list-style: none;
-  margin: auto;
-  padding: 0;
-  left: 10%;
-  color: var(--blue);
-  transition: transform var(--duration) var(--ease);
-  
-  transform: 
-    translateY(
-      calc(
-        ( var(--nav-total) - var(--selected) )
-        * var(--item-height)
-      )
-  );
+.blue {
+  background-color: $my-blue;
 }
 
-.secondary-nav-item {
-  cursor: pointer;
-  list-style: none;
-  text-transform: uppercase;
-  height: var(--item-height);
-  white-space: nowrap;
-  display: flex; 
-  justify-content: flex-start;
-  align-items: center;
-  font-weight: bold;
-  transition: opacity var(--duration) linear, transform var(--duration) var(--ease);
-  
-  transform: 
-    translateY( 
-      calc(
-        var(--item-height) + 
-        (var(--nav-height) * -1)
-      )
-    );
-  
-  &[data-selected] {
-    opacity: 0;
-    transform: translateY(0);
-    
-    ~ .secondary-nav-item {
-      transform: translateY(0);
-    }
-  }
-  
-  > span {
-    color: var(--color-blue);
-    display: inline-block;
-  }
+.yellow {
+  background-color: $my-yellow;
+  color: #000000;
 }
 
-/* ---------------------------------- */
-
-.header-nav {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  
-  > .header-nav-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+.red {
+  background-color: $my-red;
 }
 
-.header-nav-item {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  overflow: hidden;
-  white-space: nowrap;
-  
-  > span {
-    display: inline-block;
-    transform: translateY(-200%);
-    visibility: hidden;
-    transition: 
-      transform var(--duration) var(--ease),
-      visibility 0.01s linear;
-    transition-delay: 0s, var(--duration);
-    ~ span {
-      transition-duration: calc(var(--duration) * 1.1), 0.01s;
-    }
-  }
-  
-  &[data-selected] {
-    > span {
-      transform: none;
-      visibility: visible;
-      transition-delay: 0s, 0s;
-    }
-    
-    ~ .header-nav-item > span {
-      transform: translateY(200%);
-    }
-  }
+.purple {
+  background-color: $my-purple;
 }
-
-
