@@ -1,120 +1,122 @@
-body{
+* {
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+}
+
+html,
+body {
+  height: 100%;
+  /* for touch screen */
+  touch-action: none; 
+}
+
+body {
   overflow: hidden;
-  background: #4c204b;
-}
-.outer{
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  height: 150px;
-  width: 150px;
+  background: #111;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
 }
-.outer:before{
-  content: '';
+
+#drag-container, #spin-container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform: rotateX(-10deg);
+          transform: rotateX(-10deg);
+}
+
+#drag-container img, #drag-container video {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 200px;
+  font-size: 50px;
+  text-align: center;
+  -webkit-box-shadow: 0 0 8px #fff;
+          box-shadow: 0 0 8px #fff;
+  -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0005);
+}
+
+#drag-container img:hover, #drag-container video:hover {
+  -webkit-box-shadow: 0 0 15px #fffd;
+          box-shadow: 0 0 15px #fffd;
+  -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0007);
+}
+
+#drag-container p {
+  font-family: Serif;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%) rotateX(90deg);
+          transform: translate(-50%,-50%) rotateX(90deg);
+  color: #fff;
+}
+
+#ground {
+  width: 900px;
+  height: 900px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%) rotateX(90deg);
+          transform: translate(-50%,-50%) rotateX(90deg);
+  background: -webkit-radial-gradient(center center, farthest-side , #9993, transparent);
+}
+
+#music-container {
   position: absolute;
   top: 0;
-  right: 0;
-  height: 100vh;
-  width: 200%;
-  z-index: 2;
-  background: linear-gradient(to right, transparent, #4c204b, #4c204b);
-  animation: animate 2s linear forwards;
+  left: 0;
 }
-@keyframes animate{
-  0%{
-    right: 0;
-  }
-  100%{
-    right: -200%;
+
+@-webkit-keyframes spin {
+  from{
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+  } to{
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
   }
 }
-.text{
-  font-family: Slack-Circular-Pro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
-  position: relative;
-  margin-left: 20px;
-  color: white;
-  font-size:70px;
-}
-@media screen and (max-width: 560px) {
-  .text {
-    display: none;
+
+@keyframes spin {
+  from{
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+  } to{
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
   }
 }
-.layout{
-  min-height: 75px;
-  max-height: 75px;
-  min-width: 75px;
-  max-width: 75px;
+@-webkit-keyframes spinRevert {
+  from{
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
+  } to{
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+  }
 }
-.smallElementLeft{
-  margin: 5px 0 0 40px;
-  border-radius: 50% 50% 0 50%;
-  background: #46C4F0;
-  width: 30px;
-  height: 30px;
-}
-.bigElementLeft{
-  margin: 5px;
-  border-radius: 50px 50px 50px 50px;
-  background: #46C4F0;
-  width: 65px;
-  height: 32.5px;
-}
-.bigElementRight{
-  position: relative;
-  top: -35px;
-  margin: 2.5px 2.5px 0 0;
-  width: 32.5px;
-  height: 70px;
-  background: #54B77F;
-  border-radius: 50px 50px 50px 50px;
-}
-.smallElementRight{
-  position: relative;
-  top: 37px;
-  margin: 5px 0 0 38px;
-  border-radius: 50% 50% 50% 0;
-  background: #54B77F;
-  width: 30px;
-  height: 30px;
-}
-.smallElementLeftBottom{
-  margin: 2.5px 0 0 5px;
-  border-radius: 50px 0px 50px 50px;
-  background: #E14659;
-  width: 30px;
-  height: 30px;
-}
-.bigElementLeftBottom{
-  margin: 2.5px 0 0 5px;
-  position: relative;
-  left: 35px;
-  top: -32px;
-  border-radius: 50px 50px 50px 50px;
-  background: #E14659;
-  width: 30px;
-  height: 65px;
-}
-.smallElementRightBottom{
-  margin: 37px 0 0 0;
-  border-radius: 0 50% 50% 50%;
-  position: relative;
-  top: 2px;
-  background: #EBB22D;
-  width: 30px;
-  height: 30px;
-}
-.bigElementRightBottom{
-  margin: 5px 0 0 0;
-  position: relative;
-  top: -70px;
-  border-radius: 50px 50px 50px 50px;
-  background: #EBB22D;
-  width: 65px;
-  height: 32.5px;
+@keyframes spinRevert {
+  from{
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
+  } to{
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+  }
 }
