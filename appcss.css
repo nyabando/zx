@@ -1,73 +1,120 @@
-$my-blue: #29BFEE;
-$my-yellow: #FFE807;
-$my-red: #F12634;
-$my-purple: #5B108B;
-
-html {
-  display: grid;
-  min-height: 100%;
+body{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   overflow: hidden;
+  background: #4c204b;
 }
-
-body {
-  display: grid;
-  background-color: #000;
-  font-family: Helvetica;
-  font-weight: 600;
-  color: #FFFFFF;
+.outer{
+  display: flex;
+  flex-wrap: wrap;
+  height: 150px;
+  width: 150px;
 }
-
-.icon {
-  margin: auto;
+.outer:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 200%;
+  z-index: 2;
+  background: linear-gradient(to right, transparent, #4c204b, #4c204b);
+  animation: animate 2s linear forwards;
 }
-
-.box {
-  width: 500px;
-  height: 250px;
-  border-color: #FFFFFF;
-  border-style: solid;
-  border-width: 10px;
+@keyframes animate{
+  0%{
+    right: 0;
+  }
+  100%{
+    right: -200%;
+  }
 }
-
-.title {
-  font-size: 80px;
-  padding-left: 30px;
-  padding-top: 10px;
+.text{
+  font-family: Slack-Circular-Pro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+  position: relative;
+  margin-left: 20px;
+  color: white;
+  font-size:70px;
 }
-
-.address {
-  font-size: 25px;
-  padding-left: 30px;
+@media screen and (max-width: 560px) {
+  .text {
+    display: none;
+  }
 }
-
-.effects {
-  padding-top: 10px;
-  padding-left: 30px;
+.layout{
+  min-height: 75px;
+  max-height: 75px;
+  min-width: 75px;
+  max-width: 75px;
 }
-
-.circle {
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  text-align: center;
-  font-size: 40px;
-  line-height: 50px;
+.smallElementLeft{
+  margin: 5px 0 0 40px;
+  border-radius: 50% 50% 0 50%;
+  background: #46C4F0;
+  width: 30px;
+  height: 30px;
 }
-
-.blue {
-  background-color: $my-blue;
+.bigElementLeft{
+  margin: 5px;
+  border-radius: 50px 50px 50px 50px;
+  background: #46C4F0;
+  width: 65px;
+  height: 32.5px;
 }
-
-.yellow {
-  background-color: $my-yellow;
-  color: #000000;
+.bigElementRight{
+  position: relative;
+  top: -35px;
+  margin: 2.5px 2.5px 0 0;
+  width: 32.5px;
+  height: 70px;
+  background: #54B77F;
+  border-radius: 50px 50px 50px 50px;
 }
-
-.red {
-  background-color: $my-red;
+.smallElementRight{
+  position: relative;
+  top: 37px;
+  margin: 5px 0 0 38px;
+  border-radius: 50% 50% 50% 0;
+  background: #54B77F;
+  width: 30px;
+  height: 30px;
 }
-
-.purple {
-  background-color: $my-purple;
+.smallElementLeftBottom{
+  margin: 2.5px 0 0 5px;
+  border-radius: 50px 0px 50px 50px;
+  background: #E14659;
+  width: 30px;
+  height: 30px;
+}
+.bigElementLeftBottom{
+  margin: 2.5px 0 0 5px;
+  position: relative;
+  left: 35px;
+  top: -32px;
+  border-radius: 50px 50px 50px 50px;
+  background: #E14659;
+  width: 30px;
+  height: 65px;
+}
+.smallElementRightBottom{
+  margin: 37px 0 0 0;
+  border-radius: 0 50% 50% 50%;
+  position: relative;
+  top: 2px;
+  background: #EBB22D;
+  width: 30px;
+  height: 30px;
+}
+.bigElementRightBottom{
+  margin: 5px 0 0 0;
+  position: relative;
+  top: -70px;
+  border-radius: 50px 50px 50px 50px;
+  background: #EBB22D;
+  width: 65px;
+  height: 32.5px;
 }
